@@ -12,6 +12,7 @@ import {
   TextareaAutosize,
   IconButton,
   Tooltip,
+  Box,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import Todo from "./Todo";
@@ -66,7 +67,14 @@ function TodoList() {
 
   return (
     <Container maxWidth="md">
-      <Card sx={{ minWidth: 275, textAlign: "center", position: "relative" }}>
+      <Card
+        sx={{
+          minWidth: 275,
+          textAlign: "center",
+          position: "relative",
+          height: "90vh",
+        }}
+      >
         <CardContent>
           <Tooltip title="تغيير ترتيب المهام" placement="left">
             <div
@@ -126,13 +134,17 @@ function TodoList() {
             <ToggleButton
               value="not_done"
               className={`${filter === "not_done" ? "active" : ""}`}
-              sx={{ fontWeight: filter === "not_done" ? "bold" : "normal" }}
+              color={filter === "not_done" ? "error" : "standard"}
+              sx={{
+                fontWeight: filter === "not_done" ? "bold" : "normal",
+              }}
             >
               غير منجز
             </ToggleButton>
             <ToggleButton
               value="done"
               className={`${filter === "done" ? "active" : ""}`}
+              color={filter === "done" ? "success" : "standard"}
               sx={{ fontWeight: filter === "done" ? "bold" : "normal" }}
             >
               منجز
@@ -150,7 +162,7 @@ function TodoList() {
           <div
             style={{
               width: "100%",
-              maxHeight: "170px",
+              height: "180px",
               overflowY: "auto",
               paddingRight: "8px",
             }}
@@ -158,12 +170,21 @@ function TodoList() {
             {filteredTodos.length > 0 ? (
               filteredTodos.map((item) => <Todo key={item.id} toDo={item} />)
             ) : (
-              <Typography
-                variant="body1"
-                sx={{ mt: 2, fontSize: "1rem", fontWeight: "bold" }}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%", // or a fixed height
+                }}
               >
-                لا توجد مهام مطابقة.
-              </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "bold", fontSize: "1rem" }}
+                >
+                  لا توجد مهام مطابقة.
+                </Typography>
+              </Box>
             )}
           </div>
 
@@ -210,8 +231,7 @@ function TodoList() {
                 placeholder="اكتب التفاصيل هنا..."
                 style={{
                   width: "100%",
-                  border: "2px solid #242E84",
-                  borderRadius: "10px",
+                  border: "1px solid #242E84",
                   padding: "10px",
                   resize: "none",
                   backgroundColor: "transparent",

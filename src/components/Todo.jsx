@@ -199,19 +199,23 @@ function Todo({ toDo }) {
           transition: "all 0.2s ease-in-out",
           "&:hover": {
             boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.5)",
-            borderRadius: "5px",
+            borderRadius: "2px",
             transform: "scale(1.005)",
           },
         }}
       >
         <CardContent>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{ position: "relative" }}>
             <Grid size={{ xs: 9 }} sx={{ borderLeft: "1px solid white" }}>
               <Typography
                 variant="h5"
                 sx={{ textAlign: "right", fontWeight: 600, m: 2 }}
               >
-                {toDo.title}
+                {toDo.isCompleted ? (
+                  <div className="line-through">{toDo.title}</div>
+                ) : (
+                  <div>{toDo.title}</div>
+                )}
               </Typography>
               <Typography variant="h6" sx={{ textAlign: "right" }}>
                 {toDo.details}
