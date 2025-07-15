@@ -28,7 +28,7 @@ function TodoList() {
   const [rotated, setRotated] = useState(false);
 
   useEffect(() => {
-    const storageTodos = JSON.parse(localStorage.getItem("todos"));
+    const storageTodos = JSON.parse(localStorage.getItem("todos")) ?? [];
     setTodos(storageTodos);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
